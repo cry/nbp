@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-16">
+    <title>NBP Collection Generator</title>
+</head>
+<body>
+
+    <h1>NBP Collection Generator</h1>
+
+    <p>Past your password list below, separated by \n</p>
+
+    <textarea name="collection" id="collection" cols="30" rows="10"></textarea> <br>
+
+    <button onclick="generate()">Generate</button>
+
+    <h5>Parsed collection</h5>
+
+    <p>Amount of elements: <span id="amount"></span></p>
+
+    <pre id="result">I will be replaced</pre>
+
+    <script src="jsbloom.js"></script>
+
+    <script>
+
+        var generate = function() {
+            var element = document.getElementById("collection").value,
+                list = element.split("\n");
+
+            var filter = new JSBloom.filter(list.length, 0.01);
+
+            filter.addEntries(list);
+
+            document.getElementById("amount").innerHTML = list.length;
+
+            document.getElementById("result").innerHTML = filter.exportData();
+        }
+
+    </script>
+    
+</body>
+</html>
