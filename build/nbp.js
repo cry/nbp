@@ -338,7 +338,7 @@ var NBP = (function() {
     ajax.send(null);
   };
   NBP.isCommonPassword = function(password) {
-    return bloom.checkEntry(password);
+    return bloom.checkEntry(password.toLowerCase());
   };
   return NBP;
 })();
