@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>NIST Bad Passwords | NBP</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>NIST Bad Passwords</h1>
+        <p>Common password validation made easy.</p>
+        <p class="view"><a href="http://github.com/cry/nist-bad-passwords">View the Project on GitHub <small>cry/nist-bad-passwords</small></a></p>
+        <ul>
+          <li><a href="https://github.com/cry/nist-bad-passwords/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cry/nist-bad-passwords/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="http://github.com/cry/nist-bad-passwords">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>What is NBP?</h1>
+
+        <p>NIST Bad Passwords, or NBP, aims to help make the reuse of common passwords a thing of the past. With the release of <strong>Special Publication 800-63-3: Digital Authentication Guidelines</strong>, it is now recommended to blacklist common passwords from being used in account registrations. </p>
+
+        <p>From <a href="https://nakedsecurity.sophos.com/2016/08/18/nists-new-password-rules-what-you-need-to-know/">Naked Security @ Sophos:</a></p>
+
+        <blockquote>
+          Check new passwords against a dictionary of known-bad choices. You don’t want to let people use ChangeMe, thisisapassword, yankees, and so on.
+        </blockquote>
+
+        <br>
+
+        <h1>Demo</h1>
+
+        <input type="text" id="demo" placeholder="Enter a password..">
+
+        <p>Your password is <span id="status_msg">uncommon</span>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/cry">Carey Li</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/nbp.min.js"></script>
+
+    <script src="javascripts/script.js"></script>
+  </body>
+</html>
