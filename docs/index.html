@@ -17,15 +17,15 @@
       <header>
         <h1>NIST Bad Passwords</h1>
         <p>Common password validation made easy.</p>
-        <p class="view"><a href="http://github.com/cry/nist-bad-passwords">View the Project on GitHub <small>cry/nist-bad-passwords</small></a></p>
+        <p class="view"><a href="http://github.com/cry/nbp">View the Project on GitHub <small>cry/nbp</small></a></p>
         <ul>
-          <li><a href="https://github.com/cry/nist-bad-passwords/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/cry/nist-bad-passwords/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="http://github.com/cry/nist-bad-passwords">Fork On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/cry/nbp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cry/nbp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="http://github.com/cry/nbp">Fork On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
-        <h1>What is NBP?</h1>
+        <h1 id="whatis">What is NBP?</h1>
 
         <p>NIST Bad Passwords, or NBP, aims to help make the reuse of common passwords a thing of the past. With the release of <strong>Special Publication 800-63-3: Digital Authentication Guidelines</strong>, it is now recommended to blacklist common passwords from being used in account registrations. </p>
 
@@ -37,15 +37,64 @@
 
         <br>
 
-        <h1>Demo</h1>
+        <h1 id="demo">Demo</h1>
 
-        <input type="text" id="demo" placeholder="Enter a password..">
+        <input type="text" id="demo_input" placeholder="Enter a password..">
 
-        <p>Your password is <span id="status_msg">uncommon</span>.</p>
+        <h4>Your password is <span id="status_msg" class="green">not common</span>.</h4>
+
+        <h1 id="api">Usage</h1>
+        
+        <p>Using NBP is easy. Simply include the library in your registration page and place the collections folder in the same folder as the registration page. If you wish, you may specify a customs collections folder. Your folder structure should look like this: </p>
+
+        <p><em>The <strong>collections</strong> folder refers to the folder storing the compiled most common passwords. In default installations, is the folder containing mostcommon_*, i.e. mostcommon_100000</em></p>
+
+        <pre>
+webroot/
+├── css/
+├── js/
+|   ├── nbp/
+|       ├── nbp.min.js
+├── collections/
+    ├── mostcommon_100000
+    ├── ...
+├── index.php
+├── register.php
+        </pre>
+
+        <h2>API Usage</h2>
+
+        <h3>Initalization</h3>
+
+        <ul>
+          <li>Function signature</li><br>
+          <pre><code>NBP.init([collection_name = "mostcommon_10000"] [, collection_folder_path = "collections/"] [, cache = true]);</code></pre>
+          <li>Example</li><br>
+          <pre><code>NBP.init("mostcommon_100000", "register/nbpcollections/", true);</code></pre>
+        </ul>
+
+        <h3>Check common password</h3>
+
+        <ul>
+          <li>Function signature</li><br>
+          <pre><code>NBP.checkCommonPassword(password);</code></pre>
+          <li>Example</li><br>
+          <pre><code>NBP.checkCommonPassword('hunter2');</code></pre>
+        </ul>
 
         <h1>Password list sources</h1>
 
         <p>NBP comes with password lists sourced from <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">SecLists</a> by <a href="https://github.com/danielmiessler">Daniel Miessler</a>.</p>
+
+        <p>The inbuilt lists include:</p>
+
+        <ul>
+          <li>mostcommon_100</li>
+          <li>mostcommon_500</li>
+          <li>mostcommon_1000</li>
+          <li>mostcommon_10000</li>
+          <li>mostcommon_100000</li>
+        </ul>
 
         <p>Building your own password lists is as easy as: </p>
 
@@ -58,6 +107,15 @@ node raw_list_in list_out
 
 mv list_out ../collections/.
         </pre>
+
+        <h1>Implementation details</h1>
+
+        <p>NBP uses a bloom filter to store lists in a more compact format. The filter implementation can be found at <a href="https://github.com/cry/jsbloom">cry/jsbloom</a>.</p>
+
+        <p>LZString is used to compress raw bloom filter contents to UTF-16.</p>
+
+        <p>The bloom filter contents are cached in localStorage in order to avoid unnecessary downloads in order to improve user experience.</p>
+
       </section>
       <footer>
         <p>This project is maintained by <a href="http://github.com/cry">Carey Li</a></p>

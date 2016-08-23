@@ -96,7 +96,7 @@ var NBP = (function() {
         bloom: bloom
     };
 
-    NBP.init = function(wordlist = "mostcommon_10000", cache = true) {
+    NBP.init = function(wordlist = "mostcommon_10000", path="collections/", cache = true) {
 
         var wordlistSplit = wordlist.split("_"),
             wordlistLength = wordlistSplit[wordlistSplit.length - 1];
@@ -106,6 +106,10 @@ var NBP = (function() {
             console.error('i.e. mostcommon_10000');
 
             return false;
+        };
+
+        if (path.slice(-1) !== '/') {
+            path += '/';
         };
 
         if (typeof localStorage[`NBP_${wordlist}`] !== "undefined" && cache) {
@@ -131,13 +135,13 @@ var NBP = (function() {
 
                 } else {
                     console.error(`[NBP] Error retrieving bloom contents. Error code: ${ajax.status}`);
-                    console.error(`[NBP] Ensure that the word list is located at collections/${wordlist}`);
+                    console.error(`[NBP] Ensure that the word list is located at ${path}${wordlist}`);
                     console.error(`[NBP] Additionally, file must match the format [list description]_[list length]`);
                 }
             };
         };
 
-        ajax.open('GET', `collections/${wordlist}`, true);
+        ajax.open('GET', `${path}${wordlist}`, true);
         ajax.send(null);
 
     };

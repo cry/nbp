@@ -296,13 +296,18 @@ var NBP = (function() {
   NBP.debug = {bloom: bloom};
   NBP.init = function() {
     var wordlist = arguments[0] !== (void 0) ? arguments[0] : "mostcommon_10000";
-    var cache = arguments[1] !== (void 0) ? arguments[1] : true;
+    var path = arguments[1] !== (void 0) ? arguments[1] : "collections/";
+    var cache = arguments[2] !== (void 0) ? arguments[2] : true;
     var wordlistSplit = wordlist.split("_"),
         wordlistLength = wordlistSplit[wordlistSplit.length - 1];
     if (typeof wordlistLength === "number") {
       console.error('[NBP] Provided wordlist file must match the format [list description]_[list length]');
       console.error('i.e. mostcommon_10000');
       return false;
+    }
+    ;
+    if (path.slice(-1) !== '/') {
+      path += '/';
     }
     ;
     if (typeof localStorage[("NBP_" + wordlist)] !== "undefined" && cache) {
@@ -323,13 +328,13 @@ var NBP = (function() {
           initState = true;
         } else {
           console.error(("[NBP] Error retrieving bloom contents. Error code: " + ajax.status));
-          console.error(("[NBP] Ensure that the word list is located at collections/" + wordlist));
+          console.error(("[NBP] Ensure that the word list is located at " + path + wordlist));
           console.error("[NBP] Additionally, file must match the format [list description]_[list length]");
         }
       }
       ;
     };
-    ajax.open('GET', ("collections/" + wordlist), true);
+    ajax.open('GET', ("" + path + wordlist), true);
     ajax.send(null);
   };
   NBP.isCommonPassword = function(password) {
