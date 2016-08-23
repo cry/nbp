@@ -259,7 +259,7 @@ var NBP = (function() {
       var hashes = [];
       hashes.push(this.djb2(str));
       hashes.push(this.sdbm(str));
-      for (var round = 2; round <= bloom.rounds; round++) {
+      for (var round = 2; round <= bloom.hashRounds; round++) {
         var new_hash = (hashes[0] + (round * hashes[1]) + (round ^ 2)) % bloom.bitArrayLength;
         hashes.push(new_hash);
       }
