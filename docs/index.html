@@ -42,6 +42,22 @@
         <input type="text" id="demo" placeholder="Enter a password..">
 
         <p>Your password is <span id="status_msg">uncommon</span>.</p>
+
+        <h1>Password list sources</h1>
+
+        <p>NBP comes with password lists sourced from <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">SecLists</a> by <a href="https://github.com/danielmiessler">Daniel Miessler</a>.</p>
+
+        <p>Building your own password lists is as easy as: </p>
+
+        <pre>
+# Assuming pwd is git root
+
+cd build_collection
+
+node raw_list_in list_out
+
+mv list_out ../collections/.
+        </pre>
       </section>
       <footer>
         <p>This project is maintained by <a href="http://github.com/cry">Carey Li</a></p>
