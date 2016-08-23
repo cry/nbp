@@ -147,7 +147,7 @@ var NBP = (function() {
     };
 
     NBP.isCommonPassword = function(password) {
-        return bloom.checkEntry(password.toLowerCase());
+        return bloom.checkEntry(password) || bloom.checkEntry(password.toLowerCase());
     };
 
     return NBP;
