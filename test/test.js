@@ -28,13 +28,13 @@ describe('NBP.isCommonPassword', function() {
             if (res) {
                 false_count++;
 
-                console.log(gen);
+                //console.log(gen);
 
                 if (false_count < iterations * 0.001) {
                     res = false;
                 };
 
-                console.log(false_count);
+                //console.log(false_count);
             };
             assert.equal(res, false);
         };
