@@ -160,7 +160,7 @@ fs.readFile(args[0], 'utf8', function(err, data) {
     if (err) throw err;
 
     var wordlist = data.split("\n"),
-        filter = new JSBloom.filter(wordlist.length, 0.001);
+        filter = new JSBloom.filter(wordlist.length, 1E-6);
 
     filter.addEntries(wordlist);
 

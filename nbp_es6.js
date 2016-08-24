@@ -112,7 +112,7 @@ var NBP = (function() {
             path += '/';
         };
 
-        if (typeof localStorage[`NBP_${wordlist}`] !== "undefined" && cache) {
+        if (typeof localStorage !== "undefined" && typeof localStorage[`NBP_${wordlist}`] !== "undefined" && cache) {
             bloom.init(localStorage[`NBP_${wordlist}`], wordlistLength);
         };
 
@@ -150,6 +150,18 @@ var NBP = (function() {
         return bloom.checkEntry(password) || bloom.checkEntry(password.toLowerCase());
     };
 
+    NBP.testInit = function(wordlist = "mostcommon_100000") {
+        var fs = require('fs');
+
+        var wordlistSplit = wordlist.split("_"),
+            wordlistLength = wordlistSplit[wordlistSplit.length - 1],
+            bloomContent = fs.readFileSync(`collections/${wordlist}`, 'utf8');
+
+        bloom.init(bloomContent, wordlistLength);
+    }
+
     return NBP;
 
 })();
+
+if (typeof module !== "undefined") module.exports = NBP;
