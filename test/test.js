@@ -14,7 +14,7 @@ describe('NBP.isCommonPassword', function() {
         };
     });
 
-    it('should return less than 0.1% false positives for randomly generated passwords', function() { this.timeout(0);
+    it('should return less than 0.1%/0.001 false positives for randomly generated passwords', function() { this.timeout(0);
         var uuid = function() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
         },
