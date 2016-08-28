@@ -312,6 +312,7 @@ var NBP = (function() {
     ;
     if (typeof localStorage !== "undefined" && typeof localStorage[("NBP_" + wordlist)] !== "undefined" && cache) {
       bloom.init(localStorage[("NBP_" + wordlist)], wordlistLength);
+      return;
     }
     ;
     var ajax = new XMLHttpRequest(),
@@ -338,6 +339,8 @@ var NBP = (function() {
     ajax.send(null);
   };
   NBP.isCommonPassword = function(password) {
+    if (password == "")
+      return false;
     return bloom.checkEntry(password) || bloom.checkEntry(password.toLowerCase());
   };
   NBP.testInit = function() {

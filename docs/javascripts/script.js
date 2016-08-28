@@ -1,5 +1,5 @@
 window.onload = function() {
-    NBP.init('mostcommon_100000', 'collections', true);
+    NBP.init('mostcommon_1000000', 'collections', true);
 
     var status_msg = document.getElementById("status_msg");
 

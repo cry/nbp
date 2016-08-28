@@ -4,11 +4,11 @@ var assert = require('assert'),
 
 NBP.testInit();
 
+var wordlist = fs.readFileSync('build_collection/top100000', 'utf8'),
+    processed_wordlist = wordlist.split('\n');
+
 describe('NBP.isCommonPassword', function() {
     it('should always return true for list mostcommon_100000', function() { this.timeout(0);
-        var wordlist = fs.readFileSync('build_collection/top100000', 'utf8'),
-            processed_wordlist = wordlist.split('\n');
-
         for (var i = processed_wordlist.length - 1; i >= 0; i--) {
             assert.equal(NBP.isCommonPassword(processed_wordlist[i]), true);
         };
