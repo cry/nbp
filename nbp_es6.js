@@ -93,7 +93,8 @@ var NBP = (function() {
      */ 
 
     NBP.debug = {
-        bloom: bloom
+        bloom: bloom,
+	version: 1
     };
 
     NBP.init = function(wordlist = "mostcommon_10000", path="collections/", cache = true) {
