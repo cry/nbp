@@ -300,7 +300,7 @@ var NBP = (function() {
     var cache = arguments[2] !== (void 0) ? arguments[2] : true;
     var wordlistSplit = wordlist.split("_"),
         wordlistLength = wordlistSplit[wordlistSplit.length - 1];
-    if (typeof wordlistLength === "number") {
+    if (typeof wordlistLength !== "number") {
       console.error('[NBP] Provided wordlist file must match the format [list description]_[list length]');
       console.error('i.e. mostcommon_10000');
       return false;
